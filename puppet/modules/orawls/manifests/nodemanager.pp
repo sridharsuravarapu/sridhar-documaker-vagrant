@@ -29,11 +29,12 @@ define orawls::nodemanager (
 )
 {
 
-  if ( $wls_domains_dir == undef ) {
+  if ( $wls_domains_dir == undef or $wls_domains_dir == '' ) {
     $domains_dir = "${middleware_home_dir}/user_projects/domains"
   } else {
     $domains_dir =  $wls_domains_dir
   }
+
 
   if ( $version == 1111 or $version == 1036 or $version == 1211 ) {
     $nodeMgrHome = "${weblogic_home_dir}/common/nodemanager"
@@ -83,13 +84,20 @@ define orawls::nodemanager (
       $java_statement = 'java'
     }
     'SunOS': {
-      $checkCommand   = "/usr/ucb/ps wwxa | grep -v grep | /bin/grep 'weblogic.NodeManager'"
+      case $::kernelrelease {
+        '5.11': {
+          $checkCommand   = "/bin/ps wwxa | /bin/grep -v grep | /bin/grep 'weblogic.NodeManager'"
+        }
+        default: {
+          $checkCommand   = "/usr/ucb/ps wwxa | /bin/grep -v grep | /bin/grep 'weblogic.NodeManager'"
+        }
+      }
       $nativeLib      = 'solaris/x64'
       $suCommand      = "su - ${os_user}"
       $java_statement = 'java -d64'
     }
     default: {
-      fail("Unrecognized operating system ${::kernel}, please use it on a Linux host")
+      fail("Unrecognized operating system ${::kernel}, please use it on a Linux or Solaris host")
     }
   }
 

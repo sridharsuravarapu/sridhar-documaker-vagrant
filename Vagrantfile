@@ -12,7 +12,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     admin.vm.hostname = "admin.example.com"
     admin.vm.synced_folder ".", "/vagrant", :mount_options => ["dmode=777","fmode=777"]
-    admin.vm.synced_folder "/Users/sridharsuravarapu/Software", "/software"    
+    admin.vm.synced_folder "/Users/sridharsuravarapu/Software", "/software"
 
     #admin.vm.synced_folder ".", "/vagrant", type: "nfs"
     #admin.vm.synced_folder "/Users/sridharsuravarapu/Software", "/software", type: "nfs"
