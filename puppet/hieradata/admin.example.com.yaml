@@ -727,7 +727,7 @@ server_instances:
     log_rotate_logon_startup:              '1'
     log_rotationtype:                      'bySize'
     machine:                               'Node2'
-    sslenabled:                            '1'
+    sslenabled:                            '0'
     ssllistenport:                         '8201'
     sslhostnameverificationignored:        '1'
     two_way_ssl:                           '0'
@@ -766,50 +766,6 @@ wls_adminserver_instances_server:
     refreshonly:               true
     subscribe:                 Wls_server[AdminServer]
 
-
-server_channel_instances:
-  'wlsServer1:Channel-Cluster':
-    ensure:           'present'
-    enabled:          '1'
-    httpenabled:      '1'
-    listenaddress:    '10.10.10.100'
-    listenport:       '8003'
-    outboundenabled:  '0'
-    protocol:         'cluster-broadcast'
-    publicaddress:    '10.10.10.100'
-    tunnelingenabled: '0'
-    require:
-      - Wls_server[wlsServer1]
-  'wlsServer2:Channel-Cluster':
-    ensure:           'present'
-    enabled:          '1'
-    httpenabled:      '1'
-    listenport:       '8003'
-    outboundenabled:  '0'
-    protocol:         'cluster-broadcast'
-    tunnelingenabled: '0'
-    require:
-      - Wls_server[wlsServer2]
-  'wlsServer1:HTTP':
-    ensure:           'present'
-    enabled:          '1'
-    httpenabled:      '1'
-    listenport:       '8004'
-    outboundenabled:  '0'
-    protocol:         'http'
-    tunnelingenabled: '0'
-    require:
-      - Wls_server[wlsServer1]
-  'wlsServer2:HTTP':
-    ensure:           'present'
-    enabled:          '1'
-    httpenabled:      '1'
-    listenport:       '8004'
-    outboundenabled:  '0'
-    protocol:         'http'
-    tunnelingenabled: '0'
-    require:
-      - Wls_server[wlsServer2]
 
 cluster_instances:
 
@@ -912,7 +868,7 @@ cluster_instances:
 
 datasource_instances:
     'jmsDS':
-      ensure:                      'present'
+      ensure:                      'absent'
       drivername:                  'com.mysql.jdbc.Driver'
       globaltransactionsprotocol:  'None'
       initialcapacity:             '0'
@@ -971,7 +927,6 @@ file_persistence_store_instances:
     require:
       - Wls_server[wlsServer2]
       - File[/opt/oracle/wlsdomains/domains/Wls1036/persistence2]
-
 
 jmsserver_instances:
    'jmsServer1':
