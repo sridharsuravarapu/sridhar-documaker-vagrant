@@ -303,7 +303,7 @@ server_instances:
     require:
       - Wls_machine[LocalMachine]
   'wlsServer1':
-    ensure:                                'present'
+    ensure:                                'absent'
     arguments:
            - *server_vm_args_permsize
            - *server_vm_args_max_permsize
@@ -770,7 +770,7 @@ wls_adminserver_instances_server:
 cluster_instances:
 
   'WebCluster':
-    ensure:                     'present'
+    ensure:                     'absent'
     migrationbasis:             'consensus'
     # migrationbasis:             'database'
     # migration_datasource:       'jmsDS'
@@ -908,7 +908,7 @@ file_persistence_folders:
 
 file_persistence_store_instances:
   'jmsFile1':
-    ensure:         'present'
+    ensure:         'absent'
     directory:      'persistence1'
     target:
       - 'wlsServer1'
@@ -918,7 +918,7 @@ file_persistence_store_instances:
       - Wls_server[wlsServer1]
       - File[/opt/oracle/wlsdomains/domains/Wls1036/persistence1]
   'jmsFile2':
-    ensure:         'present'
+    ensure:         'absent'
     directory:      'persistence2'
     target:
       - 'wlsServer2'
@@ -930,7 +930,7 @@ file_persistence_store_instances:
 
 jmsserver_instances:
    'jmsServer1':
-     ensure:              'present'
+     ensure:              'absent'
      target:
        - 'wlsServer1'
      targettype:
@@ -941,7 +941,7 @@ jmsserver_instances:
        - Wls_server[wlsServer1]
        - Wls_file_persistence_store[jmsFile1]
    'jmsServer2':
-     ensure:              'present'
+     ensure:              'absent'
      target:
        - 'wlsServer2'
      targettype:
@@ -951,7 +951,7 @@ jmsserver_instances:
 
 jms_module_instances:
    'jmsClusterModule':
-     ensure:      'present'
+     ensure:      'absent'
      target:
        - 'WebCluster'
      targettype:
@@ -960,7 +960,7 @@ jms_module_instances:
 
 jms_subdeployment_instances:
    'jmsClusterModule:jmsServers':
-      ensure:     'present'
+      ensure:     'absent'
       target:
         - 'jmsServer1'
         - 'jmsServer2'
@@ -972,7 +972,7 @@ jms_subdeployment_instances:
         - Wls_jmsserver[jmsServer1]
         - Wls_jmsserver[jmsServer2]
    'jmsClusterModule:wlsServers':
-      ensure:     'present'
+      ensure:     'absent'
       target:
         - 'WebCluster'
       targettype:
@@ -983,7 +983,7 @@ jms_subdeployment_instances:
 
 jms_connection_factory_instances:
   'jmsClusterModule:cf':
-      ensure:             'present'
+      ensure:             'absent'
       jmsmodule:          'jmsClusterModule'
       defaulttargeting:   '0'
       jndiname:           'jms/cf'
@@ -994,7 +994,7 @@ jms_connection_factory_instances:
         - Wls_jms_module[jmsClusterModule]
         - Wls_jms_subdeployment[jmsClusterModule:wlsServers]
   'jmsClusterModule:cf2':
-      ensure:             'present'
+      ensure:             'absent'
       jmsmodule:          'jmsClusterModule'
       defaulttargeting:   '1'
       jndiname:           'jms/cf2'
@@ -1005,7 +1005,7 @@ jms_connection_factory_instances:
 
 jms_queue_instances:
    'jmsClusterModule:ErrorQueue':
-     ensure:                   'present'
+     ensure:                   'absent'
      distributed:              '1'
      expirationpolicy:         'Discard'
      jndiname:                 'jms/ErrorQueue'
@@ -1019,7 +1019,7 @@ jms_queue_instances:
        - Wls_jms_module[jmsClusterModule]
        - Wls_jms_subdeployment[jmsClusterModule:jmsServers]
    'jmsClusterModule:Queue1':
-     ensure:                   'present'
+     ensure:                   'absent'
      distributed:              '1'
      errordestination:         'ErrorQueue'
      expirationpolicy:         'Redirect'
@@ -1035,7 +1035,7 @@ jms_queue_instances:
        - Wls_jms_subdeployment[jmsClusterModule:jmsServers]
        - Wls_jms_queue[jmsClusterModule:ErrorQueue]
    'jmsClusterModule:Queue2':
-     ensure:                   'present'
+     ensure:                   'absent'
      distributed:              '1'
      expirationloggingpolicy:  '%header%%properties%'
      expirationpolicy:         'Log'
@@ -1053,7 +1053,7 @@ jms_queue_instances:
 
 jms_topic_instances:
    'jmsClusterModule:Topic1':
-     ensure:               'present'
+     ensure:               'absent'
      defaulttargeting:     '0'
      distributed:          '1'
      expirationpolicy:     'Discard'
@@ -1067,7 +1067,7 @@ jms_topic_instances:
        - Wls_jms_module[jmsClusterModule]
        - Wls_jms_subdeployment[jmsClusterModule:jmsServers]
    'jmsClusterModule:Topic2':
-     ensure:               'present'
+     ensure:               'absent'
      defaulttargeting:     '0'
      distributed:          '1'
      errordestinationtype: 'UniformDistributedQueues'
