@@ -7,7 +7,7 @@
 
 node 'node1.example.com', 'node2.example.com' {
 
-  include os, ssh, java, orawls::weblogic, orautils, bsu, copydomain, nodemanager
+  include os, ssh, java, orawls::weblogic, orautils, bsu, fmw, opatch, copydomain, nodemanager
 
   Class['java'] -> Class['orawls::weblogic']
 }
@@ -167,6 +167,22 @@ class bsu {
   $default_params = {}
   $bsu_instances = hiera('bsu_instances', {})
   create_resources('orawls::bsu',$bsu_instances, $default_params)
+}
+
+class fmw{
+  require bsu
+
+  $default_params = {}
+  $fmw_installations = hiera('fmw_installations', {})
+  create_resources('orawls::fmw',$fmw_installations, $default_params)
+}
+
+class opatch{
+  require fmw,bsu,orawls::weblogic
+
+  $default_params = {}
+  $opatch_instances = hiera('opatch_instances', {})
+  create_resources('orawls::opatch',$opatch_instances, $default_params)
 }
 
 class copydomain {

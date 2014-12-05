@@ -236,7 +236,24 @@ define orawls::fmw (
     }
     $total_files = 1
 
-  } else {
+  } elsif ( $fmw_product == 'doc' ) {
+
+    $fmw_silent_response_file = 'orawls/fmw_silent_doc.rsp.erb'
+    $createFile1              = "${download_dir}/${fmw_product}/Disk1"
+
+    if ($oracle_home_dir == undef) {
+      $oracleHome = "${middleware_home_dir}/Oracle_OUD1"
+    }
+    else {
+      $oracleHome = $oracle_home_dir
+    }
+    $total_files = 1
+
+  }
+
+
+
+else {
     fail('unknown fmw_product value choose adf|soa|osb|oim|wc|wcc|web|webgate|oud')
   }
 
