@@ -139,19 +139,19 @@ wls_adminserver_instances_domain:
 
 user_instances:
   'testuser1':
-    ensure:                 'present'
+    ensure:                 'absent'
     password:               'weblogic1'
     authenticationprovider: 'DefaultAuthenticator'
     realm:                  'myrealm'
     description:            'my test user'
   'testuser2':
-    ensure:                 'present'
+    ensure:                 'absent'
     password:               'weblogic1'
     authenticationprovider: 'DefaultAuthenticator'
     realm:                  'myrealm'
     description:            'my test user'
   'testuser3':
-    ensure:                 'present'
+    ensure:                 'absent'
     password:               'weblogic1'
     authenticationprovider: 'DefaultAuthenticator'
     realm:                  'myrealm'
@@ -159,7 +159,7 @@ user_instances:
 
 group_instances:
   'TestGroup':
-    ensure:                 'present'
+    ensure:                 'absent'
     authenticationprovider: 'DefaultAuthenticator'
     description:            'My TestGroup'
     realm:                  'myrealm'
@@ -170,7 +170,7 @@ group_instances:
       - Wls_user[testuser1]
       - Wls_user[testuser2]
   'SuperUsers':
-    ensure:                 'present'
+    ensure:                 'absent'
     authenticationprovider: 'DefaultAuthenticator'
     description:            'SuperUsers'
     realm:                  'myrealm'
@@ -209,7 +209,7 @@ deployment_instances:
   #     - Wls_cluster[WebCluster]
 
 
-# create 2 machines
+# create 3 machines
 machines_instances:
   'LocalMachine':
     ensure:         'present'
@@ -233,7 +233,7 @@ machines_instances:
 
 server_vm_args_permsize:      &server_vm_args_permsize     '-XX:PermSize=256m'
 server_vm_args_max_permsize:  &server_vm_args_max_permsize '-XX:MaxPermSize=256m'
-server_vm_args_memory:        &server_vm_args_memory       '-Xms752m'
+server_vm_args_memory:        &server_vm_args_memory       '-Xms256m'
 server_vm_args_max_memory:    &server_vm_args_max_memory   '-Xmx752m'
 
 server_instances:
