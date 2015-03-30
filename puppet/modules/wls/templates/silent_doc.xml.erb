@@ -1,0 +1,251 @@
+[ENGINE]
+
+#DO NOT CHANGE THIS.
+Response File Version=1.0.0.0.0
+
+[GENERIC]
+
+#
+ORACLE_HOME=<%= @docOracleHome %>
+
+#
+HOST_NAME=<%= @docHostName %>
+
+#
+DB_TYPE=Oracle 11g
+
+#
+DB_HOST=<%= @docOracleDBHost %>
+
+#
+DB_PORT=<%= @docOracleDBPort %>
+
+#
+DB_NAME=<%= @docDB_Name %>
+
+#
+ADV_COMP=false
+
+#
+DB_SERVICE_TYPE=<%= @docServiceType %>
+
+#
+DB2_DB_PORT=50000
+
+#
+DB2zOS_DB_PORT=4103
+
+#
+DB2zOS_DB_LOCATION=LOC3
+
+#
+ORA_DB_PORT=<%= @docOracleDBPort %>
+
+#
+CONN_STRING=<%= @docConnString %>
+
+#
+REQUIRED_DISK_SPACE=1132
+
+#
+STORAGE_GROUP_VOL=
+
+#
+4K_BUFFERPOOL=
+
+#
+8K_BUFFERPOOLS_SMALL=
+
+#
+16K_BUFFERPOOLS_SMALL=
+
+#
+32K_BUFFERPOOLS_SMALL=
+
+#
+8K_BUFFERPOOLS_LARGE=
+
+#
+16K_BUFFERPOOLS_LARGE=
+
+#
+32K_BUFFERPOOLS_LARGE=
+
+#
+DB_FOLDER=
+
+#
+DB_USER=<%= @docDmkrDBUser %>
+
+#
+DB_PASSWORD=<%= @docDmkrDBPass %>
+
+#
+DB_CFM_PASSWORD=<%= @docDmkrDBCFMPass %>
+
+#
+DB_SYSTEM_ID=1
+
+#System 1
+DB_SYSTEM_NAME=<%= @docDBSystemName %>
+
+#
+ASM_DB_FOLDER=
+
+#dmkr_asline
+ASM_DB_USER=<%= @docAsmDBUser %>
+
+#
+ASM_DB_PASSWORD=<%= @docAsmDBPass %>
+
+#
+ASM_DB_CFM_PASSWORD=<%= @docAsmDBCfmPass %>
+
+#
+ASM_DB_SYSTEM_ID=1
+
+#Assembly Line 1
+ASM_DB_SYSTEM_NAME=<%= @docAsmDBSystemName %>
+
+#none_dmkr_asline_Assembly Line 1
+UNIQUE_SERVICE_NAME=<%= @docUniqueAssemblyLineServiceName %>
+
+#
+AS_TYPE=WebLogic Server 10.3.6
+
+#weblogic
+AS_USER=<%= @docASUser %>
+
+#
+AS_PASSWORD=<%= @docASPass %>
+
+#
+AS_CFM_PASSWORD=<%= @docASCfmPass %>
+
+#
+CONN_CLASS=oracle.documaker.ids.JMSConnection
+
+#
+INIT_CONTEXT_FACTORY=weblogic.jndi.WLInitialContextFactory
+
+#t3://jmsserver:11001
+PROVIDER_URL=<%= @docJmsProviderURL %>
+
+#principal
+PRINCIPAL=<%= @docJmsPrincipal %>
+
+#
+CREDENTIALS=<%= @docJmsCredentials %>
+
+#
+CFM_CREDENTIALS=<%= @docCfmCredentials %>
+
+#
+WL_CONN_CLASS=oracle.documaker.ids.JMSConnection
+
+#
+WL_INIT_CONTEXT_FACTORY=weblogic.jndi.WLInitialContextFactory
+
+#
+WL_PROVIDER_URL=<%= @docWlProviderUrl %>
+
+#
+WS_CONN_CLASS=oracle.documaker.ids.JMSConnection
+
+#
+WS_INIT_CONTEXT_FACTORY=com.ibm.websphere.naming.WsnInitialContextFactory
+
+#:9502
+WS_PROVIDER_URL=<%= @docWSProviderUrl %>
+
+#
+JMS_CONDITION_CONFIGURE_MODE=false
+
+#/home/suravarapurs338/oracle/odee_1/documaker/hotdirectory
+HOT_FOLDER=<%= @docHotFolder %>
+
+#smtphost
+SMTP_HOST=<%= @docSmtpHost %>
+
+#smtpuser
+SMTP_USER=<%= @docSmtpUser %>
+
+#<SECURE VALUE>
+SMTP_PASSWORD=<%= @docSmtpPass %>
+
+#<SECURE VALUE>
+SMTP_CFM_PASSWORD=<%= @docSmtpCfmPass %>
+
+#smtpport
+SMTP_PORT=<%= @docSmtpPort %>
+
+#admin@mail.com
+SMTP_SENDER=<%= @docSmtpSender %>
+
+#true
+SMTP_CONDITION_CONFIGURE_MODE=<%= @docSmtpConditionConfigureMode %>
+
+#True
+UCM_ENABLE=<%= @docUCMEnable %>
+
+#UCMUserid
+UCM_USER=<%= @docUcmUser %>
+
+#<SECURE VALUE>
+UCM_PASSWORD=<%= @docUCMPass %>
+
+#<SECURE VALUE>
+UCM_CFM_PASSWORD=<%= @docUCMCfmPass %>
+
+#http://ucmserver:4444
+UCM_CONN_STR=<%= @docUCMStr %>
+
+#http://
+UCM_CONN_STR_PRE=<%= @docUCMConnStrPre %>
+
+#:4444
+UCM_CONN_STR_POST=<%= @docUCMConnStrPost %>
+
+#http://ucmserver:16200//cs/groups/secure/documents/document/
+UCM_DOCUMENT_URL=<%= @docUCMDocUrl %>
+
+#false
+UCM_CONDITION_CONFIGURE_MODE=<%= @docUCMConditionConfigureMode %>
+
+#True
+UMS_ENABLE=<%= @docUMSEnable %>
+
+#umsUserId
+UMS_USER=<%= @docUMSUsr %>
+
+#<SECURE VALUE>
+UMS_PASSWORD=<%= @docUMSPass %>
+
+#<SECURE VALUE>
+UMS_CFM_PASSWORD=<%= @docUMSCfmPass %>
+
+#http://umsserver:8001/sdpmessaging/parlayx/SendMessageService
+UMS_END_POINT=<%= @docUMSEndPoint %>
+
+#false
+UMS_CONDITION_CONFIGURE_MODE=<%= @docUMSConditionConfMode %>
+
+#http://idmserver_myguess:10001/DWSV0AL1/CompositionService?WSDL
+DM_WEB_SERVICE_END_POINT=<%= @docDMWebServiceEndPoint %>
+
+#http://soaserver:8001/soa-infra/services/default/iDMkr_Correspondence/correspondenceprocesses_client_ep?WSDL
+APPROVAL_PROCESS_END_POINT=<%= @docApprovalProcessEndPoint %>
+
+#http://soaserver:8001/soa-infra/services/default/iDMkrApprovalRulesProj/iDMkrApprovalRules_DecisionService_ep
+APPROVAL_BUSINESS_RULES_END_POINT=<%= @docApprovalBusinessRulesEndPoint %>
+
+
+[SYSTEM]
+
+
+[APPLICATIONS]
+
+
+[RELATIONSHIPS]
+
+

@@ -8,24 +8,14 @@ node 'admin.example.com' {
 
   include os
   include ssh
-  include java, orawls::urandomfix
-  include orawls::weblogic, orautils
-  include bsu
-  include fmw
-  include opatch
+  include java, orawls::urandomfix,orawls::weblogic, orautils,bsu,fmw,opatch
+  include doc123 
   include domains
-  include nodemanager, startwls, userconfig
-  include security
-  include basic_config
-  include datasources
-  include virtual_hosts
-  include workmanagers
-  include file_persistence
-  include jms
-  include pack_domain
+  include nodemanager, startwls, userconfig, security, basic_config, datasources,virtual_hosts,workmanagers,file_persistence,jms,pack_domain
   include deployments
 
   Class[java] -> Class[orawls::weblogic]
+# #-> Class[wls::installdoc]
 }
 
 # operating settings for Middleware
@@ -219,6 +209,26 @@ class fmw{
   $default_params = {}
   $fmw_installations = hiera('fmw_installations', {})
   create_resources('orawls::fmw',$fmw_installations, $default_params)
+}
+
+class doc123{
+
+#  $default_params = {}
+#  $doc_instances = hiera('documaker_instances', {})
+#  create_resources('wls::installdoc',$doc_instances, $default_params)
+
+  wls::installdoc{'doc123':
+    mdwHome                => "/opt/oracle/middleware11g",
+    wlHome                 => "/opt/oracle/middleware11g/wlserver_10.3",
+    oracleHome             => "/opt/oracle",
+    fullJDKName            => "jdk1.7.0_60",  
+    user                   => "wls",
+    group                  => "dba",    
+    downloadDir            => "/var/tmp/install",
+    puppetDownloadMntPoint => "/software", 
+    docFile1               => 'V44079-01.zip',
+    remoteFile             => hiera('wls_remote_file'),
+  }
 }
 
 class opatch{
